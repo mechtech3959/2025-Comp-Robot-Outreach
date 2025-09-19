@@ -66,7 +66,7 @@ public class Robot extends LoggedRobot {
     }
 
     m_robotContainer = new RobotContainer();
-    Logger.start(); // Start logging! No more data receivers, replay sources, or metadata values may
+   // Logger.start(); // Start logging! No more data receivers, replay sources, or metadata values may
                     // be added.
 
   }

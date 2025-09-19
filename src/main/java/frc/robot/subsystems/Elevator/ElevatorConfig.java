@@ -26,7 +26,7 @@ public class ElevatorConfig {
                 .withKD(0.1).withKS(0.4).withKV(0.001).withKA(0).withKG(0.75)
                 .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign);
         TalonFXConfiguration elevatorConfig = new TalonFXConfiguration().withFeedback(new FeedbackConfigs()
-                .withFeedbackSensorSource(fused).withFeedbackRemoteSensorID(9)
+                .withFeedbackSensorSource(fused).withFeedbackRemoteSensorID(24)
                 .withRotorToSensorRatio(18)
                 .withSensorToMechanismRatio(1))
                 .withMotorOutput(new MotorOutputConfigs().withInverted(InvertedValue.CounterClockwise_Positive)

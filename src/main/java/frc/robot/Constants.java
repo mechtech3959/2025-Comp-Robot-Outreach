@@ -4,8 +4,6 @@
 
 package frc.robot;
 
-
-
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
  * numerical or boolean
@@ -23,19 +21,15 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
     public static final int kCoDriverPort = 1;
   }
-  public static class CanIdConstants{
-  public static final String canbus = "CanBus";
-  public static final int clawAxisMotorId = 14;
-  public static final int clawAxisEncoderId = 15;
-  public static final int clawIntakeMotorId = 30;
-  public static final int ElevatorMMotorId = 19;
-  public static final int ElevatorSMotorId = 20;
-  public static final int ElevatorEncoderId = 9;
 
-
-
-  
-
+  public static class CanIdConstants {
+    public static final String canbus = "CanBus";
+    public static final int clawAxisMotorId = 23;
+    public static final int clawAxisEncoderId = 22;
+    public static final int clawIntakeMotorId = 30;
+    public static final int ElevatorMMotorId = 19;
+    public static final int ElevatorSMotorId = 20;
+    public static final int ElevatorEncoderId = 24;
 
   }
 

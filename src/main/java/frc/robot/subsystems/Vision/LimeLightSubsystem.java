@@ -1,6 +1,4 @@
-package frc.robot.subsystems.Vision;
-
-import frc.robot.subsystems.Vision.LimelightHelpers;
+package frc.robot.subsystems.vision;
 
 import java.security.Timestamp;
 
@@ -10,6 +8,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.units.measure.Time;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.subsystems.vision.LimelightHelpers;
 
 public class LimeLightSubsystem extends SubsystemBase {
   public double TX;

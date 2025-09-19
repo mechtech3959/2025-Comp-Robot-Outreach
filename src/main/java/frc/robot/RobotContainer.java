@@ -82,12 +82,13 @@ public class RobotContainer {
         public final ElevatorSubsystem elevator;
         public final ClawSubsystem claw;
         private final SuperStructureSubsystem superStruct;
-    //    private final LimeLightSubsystem frontCam;
-    //    private final LimeLightSubsystem backCam;
-  // public  UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
- //  public MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 1181);
+        // private final LimeLightSubsystem frontCam;
+        // private final LimeLightSubsystem backCam;
+        // public UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
+        // public MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0",
+        // 1181);
         /* Path follower */
-        private final SendableChooser<Command> autoChooser;
+        // private final SendableChooser<Command> autoChooser;
         private final SendableChooser<String> poseChooser = new SendableChooser<String>();
         // SendableBuilder poseBuilder;
         String _chosenPose;
@@ -148,39 +149,36 @@ public class RobotContainer {
                 elevator = new ElevatorSubsystem(new ElevatorTalonFXIO());
                 claw = new ClawSubsystem(new ClawTalonFXIO(), new FeedRevMaxIO());
                 superStruct = new SuperStructureSubsystem(elevator, claw, drivetrain);
-                ScoreL4 = new scoreL4(superStruct);
-                intakeCMD = new Intake(superStruct);
+                // ScoreL4 = new scoreL4(superStruct);
+                // intakeCMD = new Intake(superStruct);
 
-                //No camera anymore:(
-               // frontCam = new LimeLightSubsystem("front-limelight");
-               // backCam = new LimeLightSubsystem("back-limelight");
-              //  frontCam.setRobot(drivetrain.getPigeon2().getYaw().getValueAsDouble());
-              //  backCam.setRobot(drivetrain.getPigeon2().getYaw().getValueAsDouble());
+                // No camera anymore:(
+                // frontCam = new LimeLightSubsystem("front-limelight");
+                // backCam = new LimeLightSubsystem("back-limelight");
+                // frontCam.setRobot(drivetrain.getPigeon2().getYaw().getValueAsDouble());
+                // backCam.setRobot(drivetrain.getPigeon2().getYaw().getValueAsDouble());
 
                 poseChooser.addOption("Collum", "Collum");
                 poseChooser.addOption("Middle", "Middle");
                 poseChooser.addOption("Wall", "Wall");
                 poseChooser.setDefaultOption("Middle", "Middle");
-                NamedCommands.registerCommand("Score L1", ScoreL4);
-                NamedCommands.registerCommand("Intake", intakeCMD);
-                autoChooser = AutoBuilder.buildAutoChooser();
-                SmartDashboard.putData("Auto Mode", autoChooser);
+                // NamedCommands.registerCommand("Score L1", ScoreL4);
+                // NamedCommands.registerCommand("Intake", intakeCMD);
+                // autoChooser = AutoBuilder.buildAutoChooser();
+                // SmartDashboard.putData("Auto Mode", autoChooser);
 
                 configureBindings();
 
         }
 
         private void configureBindings() {
-      CameraServer.startAutomaticCapture();
-
-
-
+                CameraServer.startAutomaticCapture();
 
                 drivetrain.setDefaultCommand(
                                 drivetrain.applyRequest(() -> drive
-                                                .withVelocityX(-joystick.getLeftY() * MaxSpeed) // Negative Y(forward)
-                                                .withVelocityY(-joystick.getLeftX() * MaxSpeed)// Negative X(left)
-                                                .withRotationalRate(joystick.getRightX() * MaxAngularRate) // negative
+                                                .withVelocityX(-joystick.getLeftY() * 1.5) // Negative Y(forward)
+                                                .withVelocityY(-joystick.getLeftX() * 1.5)// Negative X(left)
+                                                .withRotationalRate(joystick.getRightX() * 0.5) // negative
                                 // X(counterclockwise) SWAPPED ... kinda all - on this are turned to positive
                                 ));
                 joystick.rightBumper().whileTrue(drivetrain.applyRequest(() -> drive
@@ -309,13 +307,12 @@ public class RobotContainer {
         }
 
         public void periodic() {
-                if(superStruct.coral && superStruct.getState() == superState.Intake){
-                        controllerRumbleCommand();
-                }
+                // if(superStruct.coral && superStruct.getState() == superState.Intake){
+                // controllerRumbleCommand();
+                // }
 
-
-                //drivetrain.addVisionMeasurement(frontCam.foundPosition, frontCam.timeStamp);
-               // drivetrain.addVisionMeasurement(backCam.foundPosition, backCam.timeStamp);
+                // drivetrain.addVisionMeasurement(frontCam.foundPosition, frontCam.timeStamp);
+                // drivetrain.addVisionMeasurement(backCam.foundPosition, backCam.timeStamp);
 
                 DriverStation.getAlliance().ifPresent(currentAlliance -> {
                         SmartDashboard.putString("Ali", currentAlliance.toString());
@@ -378,7 +375,8 @@ public class RobotContainer {
 
         public Command getAutonomousCommand() {
                 /* Run the path selected from the auto chooser */
-                return autoChooser.getSelected();
+                return Commands.none();
+                // autoChooser.getSelected();
 
         }
 }
