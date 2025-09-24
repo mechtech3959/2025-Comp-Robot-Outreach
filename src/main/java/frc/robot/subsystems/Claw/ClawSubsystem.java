@@ -100,7 +100,7 @@ public class ClawSubsystem extends SubsystemBase {
 
         break;
       case Travel:
-        clawIO.setAxis(0.174);// 10 deg
+        clawIO.setAxis(0.262);// 15 deg
 
         break;
       case Intake:

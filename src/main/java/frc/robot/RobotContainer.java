@@ -64,7 +64,7 @@ public class RobotContainer {
         private double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per
                                                                                           // second
         private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
-                        .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
+                        .withDeadband(MaxSpeed * 0.05).withRotationalDeadband(MaxAngularRate * 0.05) // Add a 10% deadband
                         .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive
                                                                                  // motors
         private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
@@ -178,18 +178,18 @@ public class RobotContainer {
                                 drivetrain.applyRequest(() -> drive
                                                 .withVelocityX(-joystick.getLeftY() * 1.5) // Negative Y(forward)
                                                 .withVelocityY(-joystick.getLeftX() * 1.5)// Negative X(left)
-                                                .withRotationalRate(joystick.getRightX() * 0.5) // negative
+                                                .withRotationalRate(-joystick.getRightX() * 1) // negative
                                 // X(counterclockwise) SWAPPED ... kinda all - on this are turned to positive
                                 ));
-                joystick.rightBumper().whileTrue(drivetrain.applyRequest(() -> drive
-                                .withVelocityX(-joystick.getLeftY() * 2) // Negative Y(forward)
-                                .withVelocityY(-joystick.getLeftX() * 2)// Negative X(left)
-                                .withRotationalRate(joystick.getRightX() * 0.5) // negative
+             // joystick.rightBumper().toggleOnTrue(drivetrain.applyRequest(() -> drive
+               //                 .withVelocityX(-joystick.getLeftY() * 2.5) // Negative Y(forward)
+                 //               .withVelocityY(-joystick.getLeftX() * 2.5)// Negative X(left)
+                   //             .withRotationalRate(joystick.getRightX() * 1) // negative
                 // X(counterclockwise)
-                )).whileFalse(drivetrain.applyRequest(() -> drive
-                                .withVelocityX(-joystick.getLeftY() * MaxSpeed) // Negative Y(forward)
-                                .withVelocityY(-joystick.getLeftX() * MaxSpeed)// Negative X(left)
-                                .withRotationalRate(-joystick.getRightX() * MaxAngularRate)));
+               // )).toggleOnFalse(drivetrain.applyRequest(() -> drive
+                 //               .withVelocityX(-joystick.getLeftY() * MaxSpeed) // Negative Y(forward)
+                   ///             .withVelocityY(-joystick.getLeftX() * MaxSpeed)// Negative X(left)
+                      //          .withRotationalRate(-joystick.getRightX() * MaxAngularRate)));
 
                 joystick.a().whileTrue(drivetrain.applyRequest(() -> brake));
                 joystick.b().whileTrue(drivetrain.applyRequest(

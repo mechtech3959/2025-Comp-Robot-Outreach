@@ -98,7 +98,7 @@ public class ElevatorSubsystem extends SubsystemBase {
                 break;
             case DeAlgea_L3:
                 // was 3.8
-                elevatorIO.setHeight(3.4);
+                elevatorIO.setHeight(2.8);
 
                 break;
             case Net:
