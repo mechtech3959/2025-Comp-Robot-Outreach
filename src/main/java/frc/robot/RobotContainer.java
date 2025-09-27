@@ -120,11 +120,11 @@ public class RobotContainer {
                 return Commands.startEnd(
                                 () -> {
                                         joystick.getHID().setRumble(RumbleType.kBothRumble, 1.0);
-                                        coJoystick.getHID().setRumble(RumbleType.kBothRumble, 1.0);
+                                     //   coJoystick.getHID().setRumble(RumbleType.kBothRumble, 1.0);
                                 },
                                 () -> {
                                         joystick.getHID().setRumble(RumbleType.kBothRumble, 0.0);
-                                        coJoystick.getHID().setRumble(RumbleType.kBothRumble, 0.0);
+                                   //     coJoystick.getHID().setRumble(RumbleType.kBothRumble, 0.0);
                                 });
         }
 
@@ -191,16 +191,16 @@ public class RobotContainer {
                    ///             .withVelocityY(-joystick.getLeftX() * MaxSpeed)// Negative X(left)
                       //          .withRotationalRate(-joystick.getRightX() * MaxAngularRate)));
 
-                joystick.a().whileTrue(drivetrain.applyRequest(() -> brake));
-                joystick.b().whileTrue(drivetrain.applyRequest(
-                                () -> point.withModuleDirection(
-                                                new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
-                joystick.pov(0).whileTrue(
-                                drivetrain.applyRequest(() -> forwardStraight.withVelocityX(0.5).withVelocityY(0)));
-                joystick.pov(180)
-                                .whileTrue(drivetrain.applyRequest(
-                                                () -> forwardStraight.withVelocityX(-0.5).withVelocityY(0)));
-
+              //  joystick.a().whileTrue(drivetrain.applyRequest(() -> brake));
+                //joystick.b().whileTrue(drivetrain.applyRequest(
+              //                  () -> point.withModuleDirection(
+            //                                    new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
+          //      joystick.pov(0).whileTrue(
+        //                        drivetrain.applyRequest(() -> forwardStraight.withVelocityX(0.5).withVelocityY(0)));
+      //          joystick.pov(180)
+    //                            .whileTrue(drivetrain.applyRequest(
+  //                                              () -> forwardStraight.withVelocityX(-0.5).withVelocityY(0)));
+//
                 // Run SysId routines when holding back/start and X/Y.
                 // Note that each routine should be run exactly once in a single log.
                 /*
@@ -214,7 +214,7 @@ public class RobotContainer {
                  * Direction.kReverse));
                  */
                 // reset the field-centric heading on left bumper press
-                joystick.leftBumper().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+                joystick.back().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
 
                 /*
                  * coJoystick.a()
@@ -223,24 +223,24 @@ public class RobotContainer {
                  * }, superStruct));
                  */
 
-                coJoystick.y()
+                joystick.y()
                                 .onChange(Commands.runOnce(() -> {
                                         superStruct.changeState(superState.L4);
                                 }, superStruct));
-                coJoystick.start()
+                joystick.start()
                                 .toggleOnTrue(Commands.runOnce(() -> {
                                         superStruct.changeState(superState.Intake);
                                 }, superStruct)).toggleOnFalse(Commands.runOnce(() -> {
                                         superStruct.changeState(superState.Home);
                                 }, superStruct)).debounce(0.5);
-                coJoystick.rightBumper()
+                joystick.rightBumper()
                                 .onTrue(Commands.runOnce(() -> {
                                         superStruct.changeState(FeedStates.Outake);
                                 }, superStruct).alongWith(controllerRumbleCommand()))
                                 .onFalse(Commands.runOnce(() -> {
                                         superStruct.changeState(FeedStates.PercentOut, 0.0);
                                 }, superStruct));
-                coJoystick.leftBumper()
+                joystick.leftBumper()
                                 .onTrue(Commands.runOnce(() -> {
                                         superStruct.changeState(FeedStates.PercentOut, 0.2);
                                 }, superStruct).alongWith(controllerRumbleCommand()))
@@ -248,27 +248,27 @@ public class RobotContainer {
                                         superStruct.changeState(FeedStates.PercentOut, 0.0);
                                 }, superStruct));
                 // right
-                coJoystick.pov(90).onChange(Commands.runOnce(() -> {
+                joystick.pov(90).onChange(Commands.runOnce(() -> {
                         superStruct.changeState(superState.DeAlgea_L2);
                 }, superStruct));
-                coJoystick.pov(270).onChange(Commands.runOnce(() -> {
+                joystick.pov(270).onChange(Commands.runOnce(() -> {
                         superStruct.changeState(superState.DeAlgea_L3);
                 }, superStruct));
                 // left?
-                coJoystick.pov(180).onChange(Commands.runOnce(() -> {
+                joystick.pov(180).onChange(Commands.runOnce(() -> {
                         superStruct.changeState(superState.Processor);
                 }, superStruct));
-                coJoystick.x().onChange(Commands.runOnce(() -> {
+                joystick.x().onChange(Commands.runOnce(() -> {
 
                         superStruct.changeState(superState.L3);
 
                 }, superStruct));
-                coJoystick.b().onChange(Commands.runOnce(() -> {
+                joystick.b().onChange(Commands.runOnce(() -> {
 
                         superStruct.changeState(superState.L2);
 
                 }, superStruct));
-                coJoystick.a().onChange(Commands.runOnce(() -> {
+                joystick.a().onChange(Commands.runOnce(() -> {
 
                         superStruct.changeState(superState.Home);
 
